@@ -7,7 +7,9 @@
     "dashdash": "git://github.com/isaacs/node-dashdash",
     "manta": "~1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tap":""
+  },
   "scripts": {
     "test": "exit 0"
   },

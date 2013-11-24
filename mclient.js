@@ -15,6 +15,12 @@ var parser = dashdash.createParser({
 function createClient(argv, env) {
   argv = argv || process.argv;
   env = env || process.env;
+
+  // allow passing in JUST the manta args
+  // dashdash will automatically slice off the first two items,
+  // and we've configured it to allow unknown options anyway
+  argv = ['', ''].concat(argv);
+
   var opts = parser.parse({ argv: argv, env: env });
   manta.checkBinEnv(opts);
 
@@ -33,10 +39,15 @@ function createClient(argv, env) {
   if (opts.insecure)
     opts.rejectUnauthorized = false;
 
-  return manta.createClient(opts);
+  var client = manta.createClient(opts);
+  client.opts = opts;
+  return client;
 }
 
 if (require.main === module) {
-  console.log(manta.DEFAULT_CLI_OPTIONS);
-  console.log(parser.help());
+  var c = createClient();
+  if (c.opts.help)
+    console.log(parser.help());
+  else
+    console.error(createClient().opts);
 }
