@@ -7,7 +7,7 @@ var dashdash = require('dashdash');
 
 module.exports = createClient;
 
-var parser = dashdash.createParser({
+createClient.parser = dashdash.createParser({
   options: manta.DEFAULT_CLI_OPTIONS,
   strict: false
 });
@@ -21,7 +21,7 @@ function createClient(argv, env) {
   // and we've configured it to allow unknown options anyway
   argv = ['', ''].concat(argv);
 
-  var opts = parser.parse({ argv: argv, env: env });
+  var opts = createClient.parser.parse({ argv: argv, env: env });
   manta.checkBinEnv(opts);
 
   opts.noAuth = opts.noAuth || env.MANTA_NO_AUTH;
@@ -47,7 +47,7 @@ function createClient(argv, env) {
 if (require.main === module) {
   var c = createClient();
   if (c.opts.help)
-    console.log(parser.help());
+    console.log(createClient.parser.help());
   else
     console.error(createClient().opts);
 }
