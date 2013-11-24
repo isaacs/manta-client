@@ -24,7 +24,7 @@ function createClient(argv, env) {
   var opts = parser.parse({ argv: argv, env: env });
   manta.checkBinEnv(opts);
 
-  opts.noAuth = opts.noAuth || process.env.MANTA_NO_AUTH;
+  opts.noAuth = opts.noAuth || env.MANTA_NO_AUTH;
   opts.user = opts.account;
   opts.sign = null;
   if (!opts.noAuth) {
