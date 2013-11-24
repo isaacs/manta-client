@@ -8,7 +8,8 @@ var dashdash = require('dashdash');
 module.exports = createClient;
 
 var parser = dashdash.createParser({
-  options: manta.DEFAULT_CLI_OPTIONS
+  options: manta.DEFAULT_CLI_OPTIONS,
+  strict: false
 });
 
 function createClient(argv, env) {
@@ -33,4 +34,9 @@ function createClient(argv, env) {
     opts.rejectUnauthorized = false;
 
   return manta.createClient(opts);
+}
+
+if (require.main === module) {
+  console.log(manta.DEFAULT_CLI_OPTIONS);
+  console.log(parser.help());
 }
