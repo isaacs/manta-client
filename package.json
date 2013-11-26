@@ -4,14 +4,14 @@
   "description": "Easy way to create a client for Manta Node programs",
   "main": "mclient.js",
   "dependencies": {
-    "dashdash": "git://github.com/isaacs/node-dashdash",
+    "dashdash": "~1.4.0",
     "manta": "~1.2"
   },
   "devDependencies": {
     "tap": ""
   },
   "scripts": {
-    "test": "exit 0"
+    "test": "tap test.js"
   },
   "repository": {
     "type": "git",

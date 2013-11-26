@@ -9,7 +9,7 @@ module.exports = createClient;
 
 createClient.parser = dashdash.createParser({
   options: manta.DEFAULT_CLI_OPTIONS,
-  strict: false
+  allowUnknown: true
 });
 
 function createClient(argv, env) {
